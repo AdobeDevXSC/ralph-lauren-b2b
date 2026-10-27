@@ -1,0 +1,167 @@
+/* values from source computed styles: corporate.ralphlauren.com/newsroom
+   .corp-news-lp-cont and homepage .corp-news-hp (see migration-work/news-list-extracted.css) */
+
+/* list title ("Latest From RL Newsroom") */
+.news-list .news-list-header {
+  text-align: center;
+}
+
+.news-list .news-list-heading {
+  margin: 0.83em 0;
+  color: var(--text-color);
+  font-family: var(--body-font-family);
+  font-size: var(--heading-font-size-s);
+  font-weight: 400;
+  line-height: 44px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+}
+
+.news-list .news-list-heading a:any-link,
+.news-list .news-list-heading a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* rows */
+.news-list .news-list-items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.news-list .news-list-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30.5px 0;
+  border-bottom: 1px solid var(--divider-color);
+  text-align: center;
+}
+
+.news-list .news-list-item:last-child {
+  border-bottom: 0;
+}
+
+.news-list .news-list-thumb,
+.news-list .news-list-copy {
+  align-self: stretch;
+}
+
+.news-list .news-list-thumb picture,
+.news-list .news-list-thumb img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 175 / 102;
+  object-fit: cover;
+}
+
+.news-list .news-list-copy {
+  text-align: left;
+}
+
+/* title */
+.news-list .news-list-title {
+  margin: 10px 0;
+  color: var(--text-color);
+  font-family: var(--heading-font-family);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 28px;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.news-list .news-list-title a:any-link,
+.news-list .news-list-title a:hover {
+  color: var(--text-color);
+  letter-spacing: 0.3px;
+  text-decoration: none;
+}
+
+/* the whole row is clickable through the title link (source: .news-hotspot) */
+.news-list .news-list-item-linked .news-list-title a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+/* date */
+.news-list .news-list-date {
+  margin: 9.375px 0;
+  color: var(--rl-black);
+  font-family: var(--body-font-family);
+  font-size: 10px;
+  line-height: 28px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
+
+/* download (outline button with icon, no hover change on source) */
+.news-list .news-list-download {
+  position: relative;
+  z-index: 1;
+}
+
+main .news-list .news-list-download a.button:any-link {
+  display: flex;
+  width: 132px;
+  padding: 18px 26px;
+}
+
+main .news-list .news-list-download a.button:hover {
+  background-color: transparent;
+  color: var(--rl-navy);
+}
+
+.news-list .news-list-download a.button::before {
+  content: '';
+  flex: 0 0 auto;
+  width: 16px;
+  height: 16px;
+  background-color: currentcolor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 17 17'%3E%3Cpath fill-rule='evenodd' d='M8.40576 1.20244C8.40478 0.9263 8.62785 0.701651 8.90399 0.700673C9.18013 0.699696 9.40478 0.922759 9.40576 1.1989L9.44144 11.2768L12.8608 7.83319C13.0554 7.63723 13.3719 7.63611 13.5679 7.83068C13.7638 8.02525 13.765 8.34183 13.5704 8.53779L8.94759 13.1935L4.29192 8.57064C4.09597 8.37607 4.09485 8.05949 4.28942 7.86354C4.48399 7.66758 4.80057 7.66646 4.99652 7.86103L8.44145 11.2816L8.40576 1.20244ZM15.9424 11.883C15.9414 11.6068 16.1644 11.3822 16.4406 11.3812C16.7167 11.3802 16.9414 11.6033 16.9424 11.8794L16.9593 16.6651L0.959398 16.7218L0.942453 11.9361C0.941475 11.6599 1.16454 11.4353 1.44068 11.4343C1.71682 11.4333 1.94147 11.6564 1.94245 11.9325L1.95585 15.7182L15.9558 15.6687L15.9424 11.883Z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+@media (width >= 900px) {
+  .news-list .news-list-item {
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 50px 0;
+  }
+
+  .news-list .news-list-thumb,
+  .news-list .news-list-copy {
+    align-self: auto;
+  }
+
+  /* source grid: thumb and download one column (175/1200), copy four or five */
+  .news-list .news-list-thumb,
+  .news-list .news-list-download {
+    flex: 0 0 14.5833%;
+  }
+
+  .news-list .news-list-copy {
+    flex: 0 0 100%;
+  }
+
+  .news-list .news-list-item-has-thumb .news-list-copy,
+  .news-list .news-list-item-has-download .news-list-copy {
+    flex-basis: 82.9167%;
+  }
+
+  .news-list .news-list-item-has-thumb.news-list-item-has-download .news-list-copy {
+    flex-basis: 65.8333%;
+  }
+
+  .news-list .news-list-title {
+    font-size: 28px;
+    line-height: 40px;
+  }
+
+  main .news-list .news-list-download a.button:any-link {
+    width: 100%;
+  }
+}

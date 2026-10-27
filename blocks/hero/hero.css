@@ -1,3 +1,12 @@
+/*
+ * Hero block
+ * Source: corporate.ralphlauren.com
+ * - default: /investor-relations `header.img-hero` (1440x506, mobile crop 767x740)
+ * - video: /careers `section.corp-video` (1440x606), / `.cid_020421-hp-hero`
+ * - image-only: /pr_260930_PoloFest.html `header.img-hero` (1440x586, mobile crop 1534x1268)
+ */
+
+/* full-bleed: the hero ignores the section content width */
 .hero-container .hero-wrapper {
   max-width: unset;
   padding: 0;
@@ -5,33 +14,209 @@
 
 .hero {
   position: relative;
-  padding: 40px 24px;
-  min-height: 300px;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  aspect-ratio: 767 / 740;
+  background-color: var(--rl-navy);
+  color: var(--rl-white);
+  text-align: center;
 }
 
-.hero h1 {
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  color: var(--background-color);
+.hero > .hero-media,
+.hero > .hero-content {
+  grid-area: 1 / 1;
 }
 
-.hero picture {
+.hero .hero-media {
   position: absolute;
-  z-index: -1;
   inset: 0;
-  object-fit: cover;
-  box-sizing: border-box;
+  overflow: hidden;
 }
 
-.hero img {
-  object-fit: cover;
+.hero .hero-media picture,
+.hero .hero-media img,
+.hero .hero-media video {
+  display: block;
   width: 100%;
   height: 100%;
+  object-fit: cover;
+}
+
+/* copy is centred and shrink-wraps within half the hero width (source .copy-cont at left: 50%) */
+.hero .hero-content {
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  max-width: 50%;
+  padding: 0;
+}
+
+.hero .hero-content-inner {
+  max-width: var(--text-max-width);
+  margin: 0 auto;
+}
+
+.hero .hero-content h1,
+.hero .hero-content h2 {
+  margin: 0;
+  color: inherit;
+  font-family: var(--heading-font-family);
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 38px;
+  letter-spacing: normal;
+  text-align: center;
+}
+
+.hero .hero-content h1 {
+  text-transform: uppercase;
+  word-spacing: 10px;
+}
+
+.hero .hero-content p {
+  margin: 16px 0 0;
+}
+
+.hero .hero-content a:any-link:not(.button) {
+  color: inherit;
+  text-decoration: underline;
+}
+
+/* secondary link over media (source .corp-secondary-button: white, short centred rule) */
+.hero .hero-content p.button-wrapper {
+  margin: 0;
+  padding-top: 15px;
+}
+
+main .hero .hero-content a.button.secondary {
+  padding-bottom: 8px;
+  background-size: 44px 1px;
+  color: var(--rl-white);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  line-height: 28px;
+}
+
+main .hero .hero-content a.button.secondary:hover,
+main .hero .hero-content a.button.secondary:focus-visible {
+  background-size: 100% 1px;
+}
+
+/* image-only: picture without text */
+.hero.image-only {
+  aspect-ratio: 1534 / 1268;
+  background-color: var(--light-color);
+}
+
+/* video: muted looping background with a pause/play control */
+.hero.video {
+  aspect-ratio: 1440 / 606;
+  background-color: var(--rl-black);
+}
+
+.hero.video .hero-media picture {
+  position: absolute;
+  inset: 0;
+}
+
+.hero.video .hero-media video {
+  position: relative;
+}
+
+/* overlaid heading needs contrast on a moving background; link-only heroes have none (as source) */
+.hero.video:has(.hero-content :is(h1, h2, h3)) .hero-media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--rl-overlay);
+  pointer-events: none;
+}
+
+/* copy sits 15% above the bottom edge (source .corp-loop-cont .copy-cont: bottom: 15%, width 84.35%) */
+.hero.video .hero-content {
+  align-self: end;
+  width: 84.3546%;
+  max-width: none;
+  padding: 24px 0 calc(6.3125% - 5px);
+}
+
+.hero.video .hero-content p:not(.button-wrapper) {
+  font-family: var(--body-font-family);
+  font-size: 16px;
+  line-height: 28px;
+  letter-spacing: 0.02em;
+}
+
+/* source .corp-playpause-button: 40px, outlined white icon */
+.hero .hero-video-toggle {
+  position: absolute;
+  z-index: 2;
+  right: 8px;
+  bottom: 16px;
+  width: 40px;
+  height: 40px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--rl-white);
+  cursor: pointer;
+}
+
+.hero .hero-video-toggle svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentcolor;
+  stroke-miterlimit: 10;
+}
+
+.hero .hero-video-toggle[data-state='playing'] .hero-video-icon-play,
+.hero .hero-video-toggle[data-state='paused'] .hero-video-icon-pause {
+  display: none;
+}
+
+.hero .hero-video-toggle:hover {
+  opacity: 0.8;
+}
+
+.hero .hero-video-toggle:focus-visible {
+  outline: 2px solid var(--rl-white);
+  outline-offset: 2px;
+}
+
+@media (width >= 600px) {
+  .hero {
+    aspect-ratio: 1440 / 506;
+  }
+
+  .hero.image-only {
+    aspect-ratio: 1440 / 586;
+  }
+
+  .hero.video {
+    aspect-ratio: 1440 / 606;
+  }
+
+  .hero .hero-video-toggle {
+    right: 16px;
+    bottom: 20px;
+  }
 }
 
 @media (width >= 900px) {
-  .hero {
-    padding: 40px 32px;
+  .hero .hero-content h1,
+  .hero .hero-content h2 {
+    font-size: 44px;
+    line-height: 52px;
+  }
+
+  main .hero .hero-content a.button.secondary {
+    background-size: 80px 1px;
+    font-size: 12px;
+    letter-spacing: 2.5px;
   }
 }

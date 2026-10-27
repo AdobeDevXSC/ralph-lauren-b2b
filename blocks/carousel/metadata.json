@@ -1,0 +1,27 @@
+{
+  "variantName": "carousel",
+  "baseBlock": "carousel",
+  "canonicalModel": "collection",
+  "visualCharacteristics": {
+    "purpose": "slider; default shows one slide with a text panel, brands shows a looping strip of portrait brand images with label links",
+    "layout": "brands: full-bleed, 475x563 slides, ~3 visible with neighbours peeking, 45px white round arrows, 10px dots",
+    "source": [
+      "https://corporate.ralphlauren.com/ .cid_homepage-brands-carousel section.fullbleed"
+    ]
+  },
+  "contentPattern": {
+    "structure": "one row per slide: image | content (default: heading, text, buttons; brands: one link whose text is the brand label)",
+    "rows": [
+      "image | content"
+    ]
+  },
+  "options": [
+    {
+      "class": "brands",
+      "label": "Brands"
+    }
+  ],
+  "usage": "Home page Brands carousel.",
+  "reuseGuidance": "Brands: put the \"Brands\" section heading above the block as default content (use the center section style). Each slide needs an image and one link; the image links to the same URL. Arrows wrap around; arrow keys move the slider when it has focus.",
+  "memberVariantIds": []
+}

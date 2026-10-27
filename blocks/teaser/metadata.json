@@ -1,0 +1,35 @@
+{
+  "variantName": "teaser",
+  "baseBlock": "teaser",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "promotional image link with an overlaid title, optional deck text and a call to action",
+    "layout": "max 1200 wide; image 1200x524 (default) or 1200x422 (light, links)",
+    "typography": "title 44/52 white (default); 35/50 uppercase (light, links); deck 18/28 centred",
+    "source": [
+      "https://corporate.ralphlauren.com/ .cid_homepage-company-bucket section.img-link",
+      "https://corporate.ralphlauren.com/newsroom .cid_newsroom-asset-bucket section.img-link",
+      "https://corporate.ralphlauren.com/newsroom .cid_newsroom-contact-bucket section.img-link"
+    ]
+  },
+  "contentPattern": {
+    "structure": "one row of two cells (or two rows of one cell): image | heading, optional deck paragraph(s), CTA link (bold = primary button)",
+    "rows": [
+      "image",
+      "heading + deck + CTA"
+    ]
+  },
+  "options": [
+    {
+      "class": "light",
+      "label": "Light"
+    },
+    {
+      "class": "links",
+      "label": "Links"
+    }
+  ],
+  "usage": "Home page section teasers (Our Company, Careers, Citizenship, Investor Relations); Our Company sub-page teasers; Newsroom Media Resources and Press Contact.",
+  "reuseGuidance": "Default: the image links to the first CTA link. Omit the deck for a title-only teaser. Light: navy text for light images, all text overlaid. Links: two or more plain links become secondary buttons overlaid on the image; the image itself is not linked.",
+  "memberVariantIds": []
+}

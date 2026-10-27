@@ -1,0 +1,35 @@
+{
+  "variantName": "hero",
+  "baseBlock": "hero",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "full-bleed page-top banner: image with a centred white uppercase title, a muted looping background video, or an image on its own",
+    "layout": "full-bleed; 1440x506 (image), 1440x608 (video), 1440x586 (image-only) on desktop",
+    "typography": "heading font, --heading-font-size-xxl, uppercase, white",
+    "source": [
+      "https://corporate.ralphlauren.com/investor-relations .cid_investor-relations header.img-hero",
+      "https://corporate.ralphlauren.com/ .cid_020421-hp-hero",
+      "https://corporate.ralphlauren.com/careers section.corp-video",
+      "https://corporate.ralphlauren.com/pr_260930_PoloFest.html .corp-article header.img-hero"
+    ]
+  },
+  "contentPattern": {
+    "structure": "one cell (or several rows) holding: background image; title heading (h1 or h2); optional paragraphs and buttons. Video option: also a link to an .mp4 file (the image becomes the poster)",
+    "rows": [
+      "image + heading + optional text/buttons (+ .mp4 link for video)"
+    ]
+  },
+  "options": [
+    {
+      "class": "video",
+      "label": "Video"
+    },
+    {
+      "class": "image-only",
+      "label": "Image only"
+    }
+  ],
+  "usage": "Top of landing pages (image + title), home/careers (video), articles and press releases (image-only).",
+  "reuseGuidance": "Use one hero per page as the first block. The video option needs an .mp4 URL link; the poster image is optional but recommended. Background video is muted, does not autoplay when the user prefers reduced motion, and always has a pause/play button.",
+  "memberVariantIds": []
+}

@@ -1,0 +1,28 @@
+{
+  "variantName": "quote",
+  "baseBlock": "quote",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "serif pull quote with optional attribution, or with a signature image beneath",
+    "typography": "heading font; signature quote 28/40 centred, 672px wide",
+    "source": [
+      "https://corporate.ralphlauren.com/careers .cid_careers-hero-200114 .corp-quote"
+    ]
+  },
+  "contentPattern": {
+    "structure": "row 1: quotation paragraph(s) (quote marks are added automatically); row 2 (optional): attribution text (italic text becomes a cite), or a signature image",
+    "rows": [
+      "quotation",
+      "attribution or signature image"
+    ]
+  },
+  "options": [
+    {
+      "class": "signature",
+      "label": "Signature"
+    }
+  ],
+  "usage": "Founder quotes on the home and careers pages.",
+  "reuseGuidance": "Do not type quote marks; they are added. With Signature, put only the signature image (SVG or PNG) in row 2. A row 2 holding only an image is treated as a signature even without the option.",
+  "memberVariantIds": []
+}

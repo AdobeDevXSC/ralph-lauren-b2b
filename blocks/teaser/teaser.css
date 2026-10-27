@@ -1,0 +1,223 @@
+/*
+ * Teaser
+ * Source: corporate.ralphlauren.com section.img-link (computed styles,
+ * 390px and 1440px viewports)
+ */
+
+.teaser {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* media: image edge to edge on small screens, 1200 wide on desktop */
+.teaser .teaser-media {
+  position: relative;
+  overflow: hidden;
+  margin: 0 calc(-1 * var(--gutter));
+  background-color: var(--light-color);
+  aspect-ratio: 390 / 376;
+}
+
+.teaser.light .teaser-media {
+  aspect-ratio: 390 / 214;
+}
+
+.teaser.links .teaser-media {
+  aspect-ratio: 390 / 266;
+}
+
+.teaser .teaser-media picture,
+.teaser .teaser-media img,
+.teaser .teaser-image-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.teaser .teaser-media img {
+  object-fit: cover;
+}
+
+/*
+ * overlay: anchored from the bottom like the source copy block
+ * default: centred at 70% (mobile) / 60% (desktop) of the image height
+ */
+.teaser .teaser-overlay {
+  position: absolute;
+  inset: auto 0 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 var(--gutter);
+  color: var(--rl-white);
+  pointer-events: none;
+  transform: translateY(50%);
+}
+
+.teaser .teaser-overlay a,
+.teaser .teaser-overlay button {
+  pointer-events: auto;
+}
+
+.teaser .teaser-overlay > * {
+  max-width: var(--text-max-width);
+}
+
+.teaser .teaser-overlay h1,
+.teaser .teaser-overlay h2,
+.teaser .teaser-overlay h3,
+.teaser .teaser-overlay h4 {
+  margin: 0;
+  color: inherit;
+}
+
+.teaser .teaser-overlay > :is(h1, h2, h3, h4):first-child {
+  font-size: var(--heading-font-size-xxl);
+  line-height: 1.18;
+  text-transform: none;
+}
+
+/* deck + CTA below the image */
+.teaser .teaser-body {
+  max-width: var(--text-max-width);
+  margin: 0 auto;
+}
+
+.teaser .teaser-body > p:not(.button-wrapper) {
+  margin: 19px 0 0;
+  font-size: var(--body-font-size-m);
+  line-height: 1.556;
+}
+
+.teaser .teaser-body > p.button-wrapper {
+  margin: 24px 0 0;
+}
+
+main .teaser .teaser-body a.button.primary:any-link {
+  min-width: 263px;
+}
+
+/* light + links: everything is overlaid on the image */
+.teaser.light .teaser-overlay > :is(h1, h2, h3, h4):first-child,
+.teaser.links .teaser-overlay > :is(h1, h2, h3, h4):first-child {
+  font-size: var(--heading-font-size-xl);
+  line-height: 1.43;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+/* light: navy text, centred on mobile */
+.teaser.light .teaser-overlay {
+  bottom: 50%;
+  padding-top: 23px; /* source centres the title including its top margin */
+  color: var(--rl-navy);
+}
+
+.teaser.light .teaser-overlay > :not(:first-child) {
+  margin: 23px 0 0;
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-m);
+  line-height: 1.556;
+  text-transform: uppercase;
+}
+
+.teaser.light .teaser-overlay a:any-link:not(.button) {
+  color: inherit;
+  letter-spacing: 0.3px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.teaser.light .teaser-overlay a:any-link:not(.button):hover {
+  text-decoration: underline;
+}
+
+/* links: bottom of the link row at 70% of the image height */
+.teaser.links .teaser-overlay {
+  transform: none;
+}
+
+.teaser.links .teaser-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 32px 0 -6px;
+}
+
+.teaser.links .teaser-links p.button-wrapper {
+  width: 147px;
+  max-width: 50%;
+  margin: 0;
+}
+
+main .teaser.links .teaser-overlay a.button.secondary:any-link {
+  background-size: 44px 1px;
+  color: var(--rl-white);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+}
+
+main .teaser.links .teaser-overlay a.button.secondary:any-link:hover,
+main .teaser.links .teaser-overlay a.button.secondary:any-link:focus-visible {
+  background-size: 100% 1px;
+}
+
+@media (width >= 600px) {
+  .teaser .teaser-media {
+    aspect-ratio: 1200 / 524;
+  }
+
+  .teaser.light .teaser-media,
+  .teaser.links .teaser-media {
+    aspect-ratio: 1200 / 422;
+  }
+}
+
+@media (width >= 900px) {
+  .teaser .teaser-media {
+    margin: 0;
+  }
+
+  .teaser .teaser-overlay {
+    bottom: 40%;
+  }
+
+  .teaser .teaser-body > p:not(.button-wrapper) {
+    margin-top: 31.5px;
+  }
+
+  .teaser .teaser-body > p.button-wrapper {
+    margin-top: 30px;
+  }
+
+  /* light: bottom of the text at 60% of the image height */
+  .teaser.light .teaser-overlay {
+    bottom: 40%;
+    transform: none;
+  }
+
+  .teaser.light .teaser-overlay > :not(:first-child) {
+    margin-top: 31.5px;
+  }
+
+  .teaser.links .teaser-overlay {
+    bottom: 30%;
+  }
+
+  .teaser.links .teaser-links {
+    margin-top: 44px;
+  }
+
+  .teaser.links .teaser-links p.button-wrapper {
+    width: 242px;
+  }
+
+  main .teaser.links .teaser-overlay a.button.secondary:any-link {
+    background-size: 80px 1px;
+    font-size: 12px;
+    letter-spacing: 2.5px;
+  }
+}
