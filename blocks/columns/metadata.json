@@ -1,0 +1,23 @@
+{
+  "variantName": "columns",
+  "baseBlock": "columns",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "side-by-side image and text; the text column is centred vertically",
+    "layout": "stacked on mobile (image first); side by side from 900px with a 64-96px gap",
+    "typography": "heading font headings; 16/28 body with .32px tracking",
+    "source": [
+      "https://corporate.ralphlauren.com/polo-ralph-lauren .cid_brands-polo-rl section.img-brand"
+    ]
+  },
+  "contentPattern": {
+    "structure": "each row holds the columns; a cell with only an image is an image column. Swap the cells to put the image on the right",
+    "rows": [
+      "image | heading + text + link"
+    ]
+  },
+  "options": [],
+  "usage": "Brand intros and any image + copy pairing.",
+  "reuseGuidance": "Keep one image cell and one text cell per row for the two-column layout. Rows can alternate the image side.",
+  "memberVariantIds": []
+}

@@ -1,9 +1,20 @@
+/*
+ * Source inspiration: corporate.ralphlauren.com/polo-ralph-lauren
+ * section.img-brand (full-width collage image, no radius; body 16/28,
+ * 0.02em tracking, navy #031e3a; inline links #007dfe, no underline).
+ */
 .columns > div {
   display: flex;
   flex-direction: column;
+  gap: 24px;
+}
+
+.columns > div + div {
+  margin-top: 48px;
 }
 
 .columns img {
+  display: block;
   width: 100%;
 }
 
@@ -15,19 +26,60 @@
   order: 0;
 }
 
-.columns > div > .columns-img-col img {
-  display: block;
+.columns > div > div > :first-child {
+  margin-top: 0;
+}
+
+.columns > div > div > :last-child {
+  margin-bottom: 0;
+}
+
+.columns h1,
+.columns h2,
+.columns h3,
+.columns h4 {
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+}
+
+.columns h2 {
+  margin: 0 0 16px;
+  font-size: var(--heading-font-size-l);
+}
+
+.columns p {
+  font-size: var(--body-font-size-s);
+  letter-spacing: 0.02em;
+  line-height: 1.75;
+}
+
+.columns p.button-wrapper {
+  margin-top: 30px;
 }
 
 @media (width >= 900px) {
   .columns > div {
     align-items: center;
     flex-direction: unset;
-    gap: 24px;
+    gap: 64px;
+  }
+
+  .columns > div + div {
+    margin-top: var(--section-spacing);
   }
 
   .columns > div > div {
     flex: 1;
     order: unset;
+  }
+
+  .columns.columns-2-cols > div > div:not(.columns-img-col) {
+    max-width: 460px;
+  }
+}
+
+@media (width >= 1200px) {
+  .columns > div {
+    gap: 96px;
   }
 }

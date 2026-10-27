@@ -1,0 +1,96 @@
+/*
+ * Ralph Lauren Corporation design tokens
+ * Source: https://corporate.ralphlauren.com/ (computed styles, 1440px viewport)
+ */
+
+:root {
+  /* palette */
+  --rl-navy: #031e3a;
+  --rl-white: #fff;
+  --rl-black: #000;
+  --rl-blue: #007dfe;
+  --rl-off-white: #f5f5f2;
+  --rl-off-white-alt: #f2f3f5;
+  --rl-grey-100: #f5f5f5;
+  --rl-grey-300: #cbcbcb;
+  --rl-grey-500: #898b8e;
+  --rl-grey-600: #757575;
+  --rl-grey-700: #6d6f73;
+  --rl-grey-800: #4a4a4a;
+  --rl-overlay: rgb(0 0 0 / 35%);
+  --rl-overlay-strong: rgb(0 0 0 / 55%);
+
+  /* accent tints (citizenship & sustainability pillars) */
+  --rl-sky: #71b5e4;
+  --rl-forest: #005640;
+  --rl-camel: #c19b68;
+  --rl-cobalt: #256db4;
+
+  /* semantic colors */
+  --background-color: var(--rl-white);
+  --light-color: var(--rl-off-white);
+  --dark-color: var(--rl-navy);
+  --text-color: var(--rl-navy);
+  --muted-text-color: var(--rl-grey-700);
+  --link-color: var(--rl-blue);
+  --link-hover-color: var(--rl-blue);
+  --border-color: var(--rl-grey-300);
+  --divider-color: var(--rl-grey-500);
+
+  /* fonts */
+  --heading-font-family: 'Libre Caslon Text', caslon-fallback, 'Times New Roman', times, serif;
+  --body-font-family: 'Hanken Grotesk', hanken-fallback, helvetica, arial, sans-serif;
+  --mono-font-family: 'DM Mono', 'Lucida Console', monospace;
+
+  /* body sizes */
+  --body-font-size-m: 16px;
+  --body-font-size-s: 15px;
+  --body-font-size-xs: 13px;
+  --body-line-height: 1.625;
+  --label-font-size: 11px;
+  --label-letter-spacing: 1px;
+
+  /* heading sizes */
+  --display-font-size: 40px;
+  --heading-font-size-xxl: 32px;
+  --heading-font-size-xl: 28px;
+  --heading-font-size-l: 24px;
+  --heading-font-size-m: 22px;
+  --heading-font-size-s: 18px;
+  --heading-font-size-xs: 16px;
+
+  /* layout */
+  --content-max-width: 1200px;
+  --text-max-width: 790px;
+  --section-spacing: 48px;
+  --gutter: 30px;
+
+  /* nav height */
+  --nav-height: 50px;
+}
+
+@media (width >= 900px) {
+  :root {
+    /* body sizes */
+    --body-font-size-m: 18px;
+    --body-font-size-s: 16px;
+    --body-font-size-xs: 14px;
+    --body-line-height: 1.556;
+
+    /* heading sizes */
+    --display-font-size: 60px;
+    --heading-font-size-xxl: 44px;
+    --heading-font-size-xl: 35px;
+    --heading-font-size-l: 28px;
+    --heading-font-size-m: 24px;
+    --heading-font-size-s: 18px;
+    --heading-font-size-xs: 16px;
+
+    /* layout */
+    --section-spacing: 75px;
+    --gutter: 32px;
+
+    /* nav height: 68px top bar + 52px nav row */
+    --nav-height: 120px;
+  }
+}

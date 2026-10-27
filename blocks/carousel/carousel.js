@@ -1,13 +1,19 @@
 import { fetchPlaceholders } from '../../scripts/placeholders.js';
 
+const REAL_SLIDES = '.carousel-slide:not(.carousel-slide-clone)';
+
 function updateActiveSlide(slide) {
   const block = slide.closest('.carousel');
   const slideIndex = parseInt(slide.dataset.slideIndex, 10);
   block.dataset.activeSlide = slideIndex;
 
-  const slides = block.querySelectorAll('.carousel-slide');
+  const slides = block.querySelectorAll(REAL_SLIDES);
+  const isBrands = block.classList.contains('brands');
 
   slides.forEach((aSlide, idx) => {
+    aSlide.classList.toggle('carousel-slide-active', idx === slideIndex);
+    // brands shows several slides at once, so every slide stays reachable
+    if (isBrands) return;
     aSlide.setAttribute('aria-hidden', idx !== slideIndex);
     aSlide.querySelectorAll('a').forEach((link) => {
       if (idx !== slideIndex) {
@@ -31,18 +37,114 @@ function updateActiveSlide(slide) {
   });
 }
 
+/**
+ * scrollLeft that brings a slide into its resting position: centred, or (when
+ * CSS snaps slide ends, as brands does on desktop) just left of the centre so
+ * the slide and its right-hand neighbour sit side by side.
+ */
+function centreOffset(slidesWrapper, slide) {
+  if (getComputedStyle(slide).scrollSnapAlign.includes('end')) {
+    const gap = parseFloat(getComputedStyle(slidesWrapper).columnGap) || 0;
+    return slide.offsetLeft + slide.offsetWidth - (slidesWrapper.clientWidth - gap) / 2;
+  }
+  return slide.offsetLeft - (slidesWrapper.clientWidth - slide.offsetWidth) / 2;
+}
+
 function showSlide(block, slideIndex = 0) {
-  const slides = block.querySelectorAll('.carousel-slide');
+  const slides = block.querySelectorAll(REAL_SLIDES);
   let realSlideIndex = slideIndex < 0 ? slides.length - 1 : slideIndex;
   if (slideIndex >= slides.length) realSlideIndex = 0;
   const activeSlide = slides[realSlideIndex];
 
-  activeSlide.querySelectorAll('a').forEach((link) => link.removeAttribute('tabindex'));
-  block.querySelector('.carousel-slides').scrollTo({
+  activeSlide.querySelectorAll('a:not(.carousel-slide-image-link)').forEach((link) => link.removeAttribute('tabindex'));
+  const slidesWrapper = block.querySelector('.carousel-slides');
+
+  if (block.classList.contains('brands')) {
+    // wrap-around: scroll on to the clone next to the edge, then jump back
+    // to the real slide once scrolling settles (see bindBrandsEvents)
+    let target = activeSlide;
+    if (slideIndex >= slides.length) target = block.querySelector('.carousel-slide-clone[data-clone-side="after"]') || activeSlide;
+    if (slideIndex < 0) target = [...block.querySelectorAll('.carousel-slide-clone[data-clone-side="before"]')].pop() || activeSlide;
+    slidesWrapper.scrollTo({ top: 0, left: centreOffset(slidesWrapper, target), behavior: 'smooth' });
+    updateActiveSlide(activeSlide);
+    return;
+  }
+
+  slidesWrapper.scrollTo({
     top: 0,
     left: activeSlide.offsetLeft,
     behavior: 'smooth',
   });
+}
+
+/**
+ * brands: looping track. A copy of the slides is placed before and after the
+ * real ones so neighbours always peek on both sides; the copies are inert.
+ * @param {Element} block The carousel block
+ */
+function bindBrandsEvents(block) {
+  const slidesWrapper = block.querySelector('.carousel-slides');
+  const slides = [...block.querySelectorAll(REAL_SLIDES)];
+
+  const makeClone = (slide, idx, side) => {
+    const clone = slide.cloneNode(true);
+    clone.removeAttribute('id');
+    clone.removeAttribute('aria-labelledby');
+    clone.classList.add('carousel-slide-clone');
+    clone.classList.remove('carousel-slide-active');
+    clone.dataset.cloneOf = idx;
+    clone.dataset.cloneSide = side;
+    clone.setAttribute('aria-hidden', 'true');
+    clone.inert = true;
+    clone.querySelectorAll('[id]').forEach((el) => el.removeAttribute('id'));
+    return clone;
+  };
+  slidesWrapper.prepend(...slides.map((slide, idx) => makeClone(slide, idx, 'before')));
+  slidesWrapper.append(...slides.map((slide, idx) => makeClone(slide, idx, 'after')));
+  const allSlides = [...slidesWrapper.children];
+
+  // the slide whose resting position is closest to the current scroll position
+  const findCentred = () => allSlides.reduce((closest, slide) => {
+    const distance = Math.abs(centreOffset(slidesWrapper, slide) - slidesWrapper.scrollLeft);
+    return distance < closest.distance ? { slide, distance } : closest;
+  }, { slide: slides[0], distance: Infinity }).slide;
+
+  const jumpTo = (slide) => {
+    slidesWrapper.scrollTo({ top: 0, left: centreOffset(slidesWrapper, slide), behavior: 'instant' });
+  };
+
+  let timer;
+  slidesWrapper.addEventListener('scroll', () => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      const centred = findCentred();
+      if (centred.classList.contains('carousel-slide-clone')) {
+        const real = slides[parseInt(centred.dataset.cloneOf, 10)];
+        jumpTo(real);
+        updateActiveSlide(real);
+      } else {
+        updateActiveSlide(centred);
+      }
+    }, 120);
+  }, { passive: true });
+
+  block.addEventListener('keydown', (e) => {
+    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+    if (!e.target.closest('.carousel-slides, .carousel-navigation-buttons')) return;
+    e.preventDefault();
+    const step = e.key === 'ArrowLeft' ? -1 : 1;
+    showSlide(block, parseInt(block.dataset.activeSlide, 10) + step);
+  });
+
+  // start on the first slide, centred; re-centre whenever the track resizes
+  // (this also covers the first layout, once the section becomes visible)
+  updateActiveSlide(slides[0]);
+  let lastWidth = 0;
+  new ResizeObserver(() => {
+    if (!slidesWrapper.clientWidth || slidesWrapper.clientWidth === lastWidth) return;
+    lastWidth = slidesWrapper.clientWidth;
+    jumpTo(slides[parseInt(block.dataset.activeSlide, 10) || 0]);
+  }).observe(slidesWrapper);
 }
 
 function bindEvents(block) {
@@ -63,6 +165,11 @@ function bindEvents(block) {
     showSlide(block, parseInt(block.dataset.activeSlide, 10) + 1);
   });
 
+  if (block.classList.contains('brands')) {
+    bindBrandsEvents(block);
+    return;
+  }
+
   const slideObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) updateActiveSlide(entry.target);
@@ -73,7 +180,7 @@ function bindEvents(block) {
   });
 }
 
-function createSlide(row, slideIndex, carouselId) {
+function createSlide(row, slideIndex, carouselId, isBrands = false) {
   const slide = document.createElement('li');
   slide.dataset.slideIndex = slideIndex;
   slide.setAttribute('id', `carousel-${carouselId}-slide-${slideIndex}`);
@@ -84,8 +191,30 @@ function createSlide(row, slideIndex, carouselId) {
     slide.append(column);
   });
 
+  if (isBrands) {
+    const picture = slide.querySelector('.carousel-slide-image picture');
+    const link = slide.querySelector('.carousel-slide-content a[href]');
+    if (picture && link) {
+      // pointer-only shortcut; the label link is the accessible link
+      const imageLink = document.createElement('a');
+      imageLink.href = link.href;
+      imageLink.className = 'carousel-slide-image-link';
+      imageLink.tabIndex = -1;
+      imageLink.setAttribute('aria-hidden', 'true');
+      picture.replaceWith(imageLink);
+      imageLink.append(picture);
+    }
+    if (link) {
+      link.closest('p')?.classList.add('button-wrapper');
+      link.classList.add('button', 'secondary');
+      slide.setAttribute('role', 'group');
+      slide.setAttribute('aria-roledescription', 'slide');
+      slide.setAttribute('aria-label', link.textContent.trim());
+    }
+  }
+
   const labeledBy = slide.querySelector('h1, h2, h3, h4, h5, h6');
-  if (labeledBy) {
+  if (labeledBy && labeledBy.id) {
     slide.setAttribute('aria-labelledby', labeledBy.getAttribute('id'));
   }
 
@@ -98,6 +227,7 @@ export default async function decorate(block) {
   block.setAttribute('id', `carousel-${carouselId}`);
   const rows = block.querySelectorAll(':scope > div');
   const isSingleSlide = rows.length < 2;
+  const isBrands = block.classList.contains('brands');
 
   const placeholders = await fetchPlaceholders();
 
@@ -131,7 +261,7 @@ export default async function decorate(block) {
   }
 
   rows.forEach((row, idx) => {
-    const slide = createSlide(row, idx, carouselId);
+    const slide = createSlide(row, idx, carouselId, isBrands);
     slidesWrapper.append(slide);
 
     if (slideIndicators) {

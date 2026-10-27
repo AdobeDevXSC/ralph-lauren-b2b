@@ -1,21 +1,24 @@
+/* quote: centred serif quotation (source: .corp-quote, 790px column) */
 .quote blockquote {
+  max-width: var(--text-max-width);
   margin: 0 auto;
-  padding: 0 24px;
-  max-width: 900px;
-}
-
-@media (width >= 900px) {
-  .quote blockquote {
-    padding: 0 32px;
-  }
+  padding: 0;
+  color: var(--text-color);
+  text-align: center;
 }
 
 .quote blockquote .quote-quotation {
-  font-size: 120%;
+  font-family: var(--heading-font-family);
+  font-size: var(--heading-font-size-m);
+  line-height: 1.43;
 }
 
 .quote blockquote .quote-quotation > :first-child {
-  text-indent: -0.5ch;
+  margin-top: 0;
+}
+
+.quote blockquote .quote-quotation > :last-child {
+  margin-bottom: 0;
 }
 
 .quote blockquote .quote-quotation > :first-child::before,
@@ -31,11 +34,64 @@
   content: "”";
 }
 
+/* default variant: mono, uppercase attribution */
 .quote blockquote .quote-attribution {
-  text-align: right;
+  margin-top: 24px;
+  font-family: var(--mono-font-family);
+  font-size: var(--label-font-size);
+  letter-spacing: var(--label-letter-spacing);
+  text-transform: uppercase;
+}
+
+.quote blockquote .quote-attribution p {
+  margin: 0;
 }
 
 .quote blockquote .quote-attribution > :first-child::before {
   content: "—";
   padding-right: 0.5ch;
+}
+
+.quote blockquote .quote-attribution cite {
+  font-style: normal;
+}
+
+/* signature variant: quote text inset 7.5% each side (671.5 of 790px) */
+.quote.signature blockquote .quote-quotation,
+.quote blockquote:has(.quote-signature) .quote-quotation {
+  margin: 0 7.5%;
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.quote blockquote .quote-signature {
+  display: flex;
+  justify-content: center;
+  margin: 25px 7.5% 0;
+}
+
+.quote blockquote .quote-signature picture {
+  display: block;
+}
+
+.quote blockquote .quote-signature img {
+  display: block;
+  width: 170px;
+  height: auto;
+}
+
+@media (width >= 900px) {
+  .quote.signature blockquote .quote-quotation,
+  .quote blockquote:has(.quote-signature) .quote-quotation {
+    font-size: 28px;
+    line-height: 40px;
+  }
+
+  .quote blockquote .quote-signature {
+    margin-top: 35px;
+  }
+
+  .quote blockquote .quote-signature img {
+    width: 238px;
+  }
 }
