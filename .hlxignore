@@ -5,3 +5,7 @@ LICENSE
 package.json
 package-lock.json
 test/*
+stardust/
+brand/
+docs/
+tools/

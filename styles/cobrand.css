@@ -1,0 +1,42 @@
+/*
+ * Cobrand (partner) tokens
+ *
+ * This is the ONLY stylesheet a cobranded microsite edits. Everything else in
+ * styles/ belongs to the Ralph Lauren B2B Boilerplate and arrives through
+ * upstream merges. The defaults below are neutral, so the boilerplate renders
+ * as pure Ralph Lauren.
+ *
+ * Rules (brand/rl/COBRAND-RULES.md):
+ * - Partner accents are highlights, section grounds and secondary emphasis.
+ *   They never replace navy body text or the navy primary button.
+ * - Every accent/contrast pair must pass WCAG AA (4.5:1 for text, 3:1 for
+ *   large text and UI marks).
+ * - Use hex values; no gradients.
+ */
+
+:root {
+  /* partner accent: highlight bars, CTA rules, accent sections */
+  --cobrand-accent: var(--rl-navy);
+
+  /* text / UI colour that sits on --cobrand-accent */
+  --cobrand-accent-contrast: var(--rl-white);
+
+  /* quiet partner-tinted ground for "cobrand" sections */
+  --cobrand-accent-soft: var(--rl-off-white);
+
+  /* accent used over photography (hero, teaser overlays) */
+  --cobrand-accent-on-image: var(--rl-white);
+
+  /* header / footer partner lockup */
+  --cobrand-divider-color: var(--border-color);
+  --cobrand-logo-height: 22px;
+  --cobrand-logo-max-width: 110px;
+  --cobrand-footer-logo-height: 28px;
+}
+
+@media (width >= 900px) {
+  :root {
+    --cobrand-logo-height: 36px;
+    --cobrand-logo-max-width: 200px;
+  }
+}

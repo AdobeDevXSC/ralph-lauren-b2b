@@ -14,6 +14,7 @@ Single block table. Content: one cell (or several rows) holding: background imag
 | --- | --- |
 | Video | `video` |
 | Image only | `image-only` |
+| Cobrand (partner-accent bar under the title; combine with any option, e.g. `hero video cobrand`) | `cobrand` |
 
 ## Universal Editor fields
 

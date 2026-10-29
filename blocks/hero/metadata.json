@@ -27,6 +27,10 @@
     {
       "class": "image-only",
       "label": "Image only"
+    },
+    {
+      "class": "cobrand",
+      "label": "Cobrand"
     }
   ],
   "usage": "Top of landing pages (image + title), home/careers (video), articles and press releases (image-only).",

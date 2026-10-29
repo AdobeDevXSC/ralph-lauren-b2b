@@ -99,6 +99,25 @@ main .teaser .teaser-body a.button.primary:any-link {
   min-width: 263px;
 }
 
+/* cobrand option: partner-accent title bar and CTA rule */
+.teaser.cobrand .teaser-overlay > :is(h1, h2, h3, h4):first-child::after {
+  content: '';
+  display: block;
+  width: 64px;
+  height: 3px;
+  margin: 16px auto 0;
+  background-color: var(--cobrand-accent-on-image);
+}
+
+.teaser.cobrand.light .teaser-overlay > :is(h1, h2, h3, h4):first-child::after {
+  background-color: var(--cobrand-accent);
+}
+
+.teaser.cobrand .teaser-body > p.button-wrapper::after {
+  height: 2px;
+  background-color: var(--cobrand-accent);
+}
+
 /* light + links: everything is overlaid on the image */
 .teaser.light .teaser-overlay > :is(h1, h2, h3, h4):first-child,
 .teaser.links .teaser-overlay > :is(h1, h2, h3, h4):first-child {

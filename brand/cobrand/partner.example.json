@@ -1,0 +1,37 @@
+{
+  "_comment": "Copy to brand/cobrand/partner.json in a new microsite and fill in. The boilerplate itself never has a partner.json; its presence marks a repo as a cobranded microsite. Rules: brand/rl/COBRAND-RULES.md.",
+  "partner": {
+    "name": "Partner Name",
+    "slug": "partner-name",
+    "website": "https://www.partner.example.com/",
+    "programme": "One-line description of the shared programme, e.g. 'Polo Ralph Lauren Spring 2027 wholesale launch'",
+    "audience": "Who the microsite serves, e.g. 'partner buyers and store teams'"
+  },
+  "source": {
+    "type": "url | brand-kit",
+    "url": "https://www.partner.example.com/",
+    "capturedAt": null,
+    "notes": "For url: captured with a quick Stardust extract of the partner site (see AGENTS.md). For brand-kit: values supplied by the partner."
+  },
+  "logos": {
+    "primary": "brand/cobrand/logos/partner-logo.svg",
+    "onDark": "brand/cobrand/logos/partner-logo-white.svg",
+    "alt": "Partner Name"
+  },
+  "colors": {
+    "accent": "#7a1f2b",
+    "accentContrast": "#ffffff",
+    "accentSoft": "#f6eeee",
+    "accentOnImage": "#e9c46a"
+  },
+  "contrastChecks": {
+    "accentOnWhite": null,
+    "accentContrastOnAccent": null,
+    "navyOnAccentSoft": null,
+    "accentOnImage": null
+  },
+  "approvals": {
+    "partnerBrandTeam": null,
+    "ralphLaurenBrandTeam": null
+  }
+}
