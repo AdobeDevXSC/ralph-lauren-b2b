@@ -22,7 +22,7 @@ async function fetchNav() {
 function resolveImages(root, base) {
   root.querySelectorAll('img[src]').forEach((img) => {
     const src = img.getAttribute('src');
-    if (!/^(https?:)?\/\//.test(src) && !src.startsWith('/')) {
+    if (!/^(https?:|data:|\/)/.test(src)) {
       img.src = new URL(src, base).pathname;
     }
   });
@@ -67,16 +67,33 @@ function buildTicker(section) {
 }
 
 /**
- * Builds the brand (logo) container.
+ * Builds the brand (logo) container. The first logo is Ralph Lauren; an optional
+ * second logo (paragraph) in the same section is the cobrand partner, rendered as
+ * a lockup: Ralph Lauren | partner.
  * @param {Element} section nav fragment section
  * @returns {Element}
  */
 function buildBrand(section) {
   const brand = document.createElement('div');
   brand.className = 'nav-brand';
-  const link = section.querySelector('a');
-  if (link) brand.append(link);
-  else brand.append(...section.childNodes);
+  const logos = [...section.querySelectorAll(':scope > p')]
+    .map((p) => p.querySelector('a') || p.querySelector('picture, img'))
+    .filter(Boolean);
+  if (!logos.length) {
+    brand.append(...section.childNodes);
+    return brand;
+  }
+  const [rlLogo, partnerLogo] = logos;
+  rlLogo.classList.add('nav-brand-rl');
+  brand.append(rlLogo);
+  if (partnerLogo) {
+    brand.classList.add('nav-brand-cobrand');
+    const divider = document.createElement('span');
+    divider.className = 'nav-brand-divider';
+    divider.setAttribute('aria-hidden', 'true');
+    partnerLogo.classList.add('nav-brand-partner');
+    brand.append(divider, partnerLogo);
+  }
   return brand;
 }
 
@@ -384,7 +401,7 @@ export default async function decorate(block) {
     });
   });
 
-  const homeLink = brand && brand.querySelector('a');
+  const homeLink = brand && brand.querySelector('a.nav-brand-rl, a');
   if (homeLink) markExternalLinks(nav, new URL(homeLink.href).host);
 
   // Escape closes search, dropdowns / sub-panels and the mobile menu; outside click closes search

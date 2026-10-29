@@ -78,6 +78,16 @@
   margin: 16px 0 0;
 }
 
+/* cobrand option: short partner-accent bar under the title */
+.hero.cobrand .hero-content :is(h1, h2)::after {
+  content: '';
+  display: block;
+  width: 64px;
+  height: 3px;
+  margin: 16px auto 0;
+  background-color: var(--cobrand-accent-on-image);
+}
+
 .hero .hero-content a:any-link:not(.button) {
   color: inherit;
   text-decoration: underline;

@@ -427,6 +427,37 @@ header .nav-ticker-symbol {
   margin-right: 5px;
 }
 
+/* cobrand lockup: Ralph Lauren | partner (partner sizing from cobrand.css) */
+header .nav-brand-cobrand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+header .nav-brand-cobrand .nav-brand-rl img {
+  width: 150px;
+}
+
+header .nav-brand-cobrand .nav-brand-divider {
+  flex: 0 0 1px;
+  height: var(--cobrand-logo-height);
+  background-color: var(--cobrand-divider-color);
+}
+
+header .nav-brand-cobrand .nav-brand-partner {
+  display: block;
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+header .nav-brand-cobrand .nav-brand-partner img {
+  width: auto;
+  max-width: var(--cobrand-logo-max-width);
+  height: var(--cobrand-logo-height);
+  padding: 0;
+  object-fit: contain;
+}
+
 /* ---------- tablet ---------- */
 @media (width >= 600px) {
   header .nav-hamburger button {
@@ -484,6 +515,15 @@ header .nav-ticker-symbol {
     box-sizing: border-box;
     width: 545px;
     padding: 0 15px;
+  }
+
+  header .nav-brand-cobrand {
+    gap: 24px;
+  }
+
+  header .nav-brand-cobrand .nav-brand-rl img {
+    width: 380px;
+    padding: 0;
   }
 
   header .nav-search-toggle {

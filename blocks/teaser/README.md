@@ -14,6 +14,7 @@ Single block table. Content: one row of two cells (or two rows of one cell): ima
 | --- | --- |
 | Light | `light` |
 | Links | `links` |
+| Cobrand (partner-accent title bar and CTA rule; combine with any option) | `cobrand` |
 
 ## Universal Editor fields
 

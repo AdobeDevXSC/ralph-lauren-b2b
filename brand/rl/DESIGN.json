@@ -1,0 +1,175 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-29T00:00:00Z",
+  "title": "Design System: Ralph Lauren B2B Boilerplate",
+  "_provenance": {
+    "source": "styles/brand.css, styles/styles.css, blocks/* of the Ralph Lauren B2B Boilerplate (derived from https://corporate.ralphlauren.com/)",
+    "role": "Locked Ralph Lauren standard. Cobranded microsites read this file; they never edit it. Partner rules: brand/rl/COBRAND-RULES.md."
+  },
+  "extensions": {
+    "colorMeta": {
+      "rl-navy": { "role": "primary", "displayName": "RL Navy", "canonical": "#031e3a", "cssVar": "--rl-navy", "locked": true, "tonalRamp": ["#010d1a", "#031e3a", "#16324f", "#2c4865", "#4d6681", "#7a8ea3", "#b3c0cd", "#e3e8ee"] },
+      "ledger-blue": { "role": "secondary", "displayName": "Ledger Blue", "canonical": "#0068d6", "cssVar": "--rl-blue", "locked": true, "usage": "inline links only", "tonalRamp": ["#001f40", "#003470", "#004a9e", "#0068d6", "#3386de", "#66a4e6", "#99c3ef", "#cce1f7"], "previous": "#007dfe (corporate.ralphlauren.com; 3.91:1 on white, below WCAG AA)" },
+      "paper-white": { "role": "neutral", "displayName": "Paper White", "canonical": "#ffffff", "cssVar": "--rl-white", "locked": true },
+      "linen": { "role": "neutral", "displayName": "Linen", "canonical": "#f5f5f2", "cssVar": "--rl-off-white", "locked": true },
+      "rule-grey": { "role": "neutral", "displayName": "Rule Grey", "canonical": "#cbcbcb", "cssVar": "--rl-grey-300", "locked": true },
+      "divider-grey": { "role": "neutral", "displayName": "Divider Grey", "canonical": "#898b8e", "cssVar": "--rl-grey-500", "locked": true },
+      "caption-grey": { "role": "neutral", "displayName": "Caption Grey", "canonical": "#6d6f73", "cssVar": "--rl-grey-700", "locked": true },
+      "ink-black": { "role": "neutral", "displayName": "Ink Black", "canonical": "#000000", "cssVar": "--rl-black", "locked": true, "usage": "black section ground only" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Large statements on immersive sections; rare.", "cssVar": "--display-font-size", "mobile": "40px" },
+      "headline": { "displayName": "Headline", "purpose": "Page titles (h1), uppercase. Hero titles: 44px desktop, 28px mobile, white.", "cssVar": "--heading-font-size-xl", "mobile": "28px" },
+      "title": { "displayName": "Title", "purpose": "Section headings (h2).", "cssVar": "--heading-font-size-l", "mobile": "24px" },
+      "subtitle": { "displayName": "Subtitle", "purpose": "Sub-section headings (h3), news titles.", "cssVar": "--heading-font-size-m", "mobile": "22px" },
+      "body": { "displayName": "Body", "purpose": "Reading text, max 790px measure.", "cssVar": "--body-font-size-m", "mobile": "16px" },
+      "label": { "displayName": "Label", "purpose": "Buttons, navigation, footer links, eyebrows (h6); uppercase.", "cssVar": "--label-font-size" }
+    },
+    "fonts": {
+      "standIns": { "heading": "Libre Caslon Text", "body": "Hanken Grotesk", "mono": "DM Mono", "license": "SIL Open Font License" },
+      "licensedBrandFaces": { "heading": "LeJeune Deck", "body": "Founders Grotesk Text", "mono": "Founders Grotesk Mono" },
+      "swapGuide": "fonts/README.md"
+    },
+    "shadows": [],
+    "motion": [
+      { "name": "ease-standard", "value": "ease", "purpose": "Button colour and opacity transitions (0.2s)." },
+      { "name": "underline-grow", "value": "background-size 0.3s ease", "purpose": "Secondary link underline grows to full width on hover." },
+      { "name": "menu-slide", "value": "transform 0.3s ease", "purpose": "Mobile menu and sub-panel slide-in." }
+    ],
+    "breakpoints": [
+      { "name": "tablet", "value": "600px" },
+      { "name": "desktop", "value": "900px" },
+      { "name": "wide", "value": "1200px" }
+    ],
+    "layout": {
+      "containerMaxWidth": "1200px",
+      "textMaxWidth": "790px",
+      "gutter": { "mobile": "30px", "desktop": "32px" },
+      "sectionSpacing": { "mobile": "48px", "desktop": "75px" },
+      "headerHeight": { "mobile": "50px", "desktop": "120px" }
+    },
+    "sectionStyles": {
+      "center": "Centre-align the section.",
+      "narrow": "Limit default content to the 790px reading measure.",
+      "light": "Linen ground.",
+      "dark": "Navy ground, white text; buttons invert.",
+      "black": "Black ground for immersive sections.",
+      "cobrand": "Partner soft-tint ground (--cobrand-accent-soft); navy text and buttons stay.",
+      "cobrand-accent": "Partner accent ground (--cobrand-accent) with --cobrand-accent-contrast text; buttons invert to the contrast colour."
+    },
+    "cobrandTokens": {
+      "file": "styles/cobrand.css",
+      "editableInMicrosites": true,
+      "tokens": ["--cobrand-accent", "--cobrand-accent-contrast", "--cobrand-accent-soft", "--cobrand-accent-on-image", "--cobrand-divider-color", "--cobrand-logo-height", "--cobrand-logo-max-width", "--cobrand-footer-logo-height"],
+      "rules": "brand/rl/COBRAND-RULES.md"
+    },
+    "stardustTokenContract": {
+      "file": "styles/brand.css",
+      "aliases": {
+        "--heading-font-family": "--heading-font-family",
+        "--body-font-family": "--body-font-family",
+        "--heading-xxl": "--display-font-size",
+        "--heading-xl": "--heading-font-size-xxl",
+        "--heading-lg": "--heading-font-size-xl",
+        "--heading-md": "--heading-font-size-l",
+        "--body": "--body-font-size-m",
+        "--body-sm": "--body-font-size-s",
+        "--color-bg": "--background-color",
+        "--color-fg": "--text-color",
+        "--color-accent": "--rl-navy",
+        "--section-padding": "--section-spacing",
+        "--max-width": "--content-max-width",
+        "--radius": "0"
+      }
+    },
+    "systemComponentRoles": {
+      "header": { "purpose": "Brand row (ticker label, wordmark, search) and navigation row; optional partner lockup.", "position": "fixed top", "locked": true },
+      "footer": { "purpose": "Social, wordmark, optional partner line, primary and legal links, copyright.", "position": "page end", "locked": true }
+    }
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Main call to action: navy block with a short rule beneath. Authored as a bold link.",
+      "html": "<p class=\"ds-btn-wrap\"><a class=\"ds-btn-primary\" href=\"#\">Learn More</a></p>",
+      "css": ".ds-btn-wrap { display: inline-flex; flex-direction: column; align-items: center; gap: 15px; color: #031e3a; } .ds-btn-wrap::after { content: ''; width: 112px; height: 1px; background: currentcolor; } .ds-btn-primary { display: inline-flex; justify-content: center; min-width: 263px; padding: 20px 26px; background: #031e3a; color: #fff; font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: 1px; line-height: 10px; text-transform: uppercase; text-decoration: none; border-radius: 0; transition: opacity 0.2s ease; } .ds-btn-primary:hover, .ds-btn-primary:focus-visible { opacity: 0.85; } .ds-btn-primary:focus-visible { outline: 2px solid #0068d6; outline-offset: 2px; }"
+    },
+    {
+      "name": "Secondary Link Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Quiet uppercase text link with a short underline that grows on hover. Authored as an italic link.",
+      "html": "<a class=\"ds-btn-secondary\" href=\"#\">Explore Careers</a>",
+      "css": ".ds-btn-secondary { display: inline-block; padding: 0 0 6px; color: #031e3a; font-family: 'Hanken Grotesk', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 2px; line-height: 28px; text-transform: uppercase; text-decoration: none; background: linear-gradient(currentcolor, currentcolor) no-repeat center bottom / 5em 1px; transition: background-size 0.3s ease; } .ds-btn-secondary:hover, .ds-btn-secondary:focus-visible { background-size: 100% 1px; }"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Download / tertiary action: navy outline that fills on hover. Authored as a bold italic link.",
+      "html": "<a class=\"ds-btn-outline\" href=\"#\">Download</a>",
+      "css": ".ds-btn-outline { display: inline-flex; padding: 18px 26px; border: 1px solid #031e3a; color: #031e3a; background: transparent; font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: 1px; line-height: 10px; text-transform: uppercase; text-decoration: none; border-radius: 0; transition: background-color 0.2s ease, color 0.2s ease; } .ds-btn-outline:hover, .ds-btn-outline:focus-visible { background: #031e3a; color: #fff; }"
+    },
+    {
+      "name": "Navigation Row",
+      "kind": "nav",
+      "refersTo": "header",
+      "description": "Desktop navigation row: nine uppercase mono links spread between quiet rules.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#\">Our Company</a><a href=\"#\">Brands</a><a href=\"#\">Careers</a><a href=\"#\">Newsroom</a><a href=\"#\">Contact</a></nav>",
+      "css": ".ds-nav { display: flex; justify-content: space-between; height: 52px; align-items: center; padding: 0 20px; border-top: 1px solid #cbcbcb; border-bottom: 1px solid #cbcbcb; } .ds-nav a { color: #031e3a; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; padding: 4px 0; border-bottom: 2px solid transparent; } .ds-nav a:hover, .ds-nav a:focus-visible { border-bottom-color: #031e3a; }"
+    },
+    {
+      "name": "Hero Title",
+      "kind": "custom",
+      "refersTo": "hero",
+      "description": "Centred white uppercase serif title over full-bleed photography with a darkening overlay.",
+      "html": "<div class=\"ds-hero\"><h1>Investor Relations</h1></div>",
+      "css": ".ds-hero { display: grid; place-items: center; min-height: 260px; background: linear-gradient(rgb(0 0 0 / 35%), rgb(0 0 0 / 35%)), #2c4865; } .ds-hero h1 { margin: 0; color: #fff; font-family: 'Libre Caslon Text', serif; font-size: 44px; font-weight: 400; line-height: 52px; text-transform: uppercase; word-spacing: 10px; text-align: center; }"
+    },
+    {
+      "name": "News Row",
+      "kind": "card",
+      "refersTo": "news-list",
+      "description": "Dated press release row with serif title and outline Download button, separated by a divider rule.",
+      "html": "<div class=\"ds-news\"><div><a href=\"#\">Ralph Lauren Declares Quarterly Dividend</a><p>Sep 11, 2026</p></div><a class=\"ds-news-dl\" href=\"#\">Download</a></div>",
+      "css": ".ds-news { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 30px 0; border-bottom: 1px solid #898b8e; } .ds-news a:first-child { color: #031e3a; font-family: 'Libre Caslon Text', serif; font-size: 24px; line-height: 34px; text-decoration: none; } .ds-news p { margin: 4px 0 0; color: #000; font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; } .ds-news-dl { padding: 18px 26px; border: 1px solid #031e3a; color: #031e3a; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; } .ds-news-dl:hover { background: #031e3a; color: #fff; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Quiet Flagship",
+    "overview": "The system is the Ralph Lauren corporate voice translated for business partners: the calm of a Madison Avenue flagship rather than the energy of a retail campaign. Photography carries the emotion; type, colour and layout stay composed and almost silent around it. Navy on white, a classic serif for headlines, a clean sans for reading and a small mono label for wayfinding are the whole vocabulary. Cobranded microsites inherit this system intact. A partner adds its logo, a restrained accent colour, its imagery and its page compositions, but it never changes the voice.",
+    "keyCharacteristics": [
+      "Navy (#031e3a) on white is the default for text, buttons and rules.",
+      "Serif headlines, sans body, mono uppercase labels and buttons.",
+      "Square corners everywhere; no shadows.",
+      "Centred, editorial layout with generous section spacing.",
+      "Full-bleed photography with white type over it."
+    ],
+    "rules": [
+      { "name": "The One Navy Rule", "body": "Navy is the only colour for body text and primary calls to action, on every site, cobranded or not.", "section": "colors" },
+      { "name": "The Blue Is For Reading Rule", "body": "Ledger Blue marks links inside running text and nowhere else.", "section": "colors" },
+      { "name": "The Three Voices Rule", "body": "Serif speaks, sans explains, mono directs. Never set body copy in the serif or headlines in the mono.", "section": "typography" },
+      { "name": "The Quiet Weight Rule", "body": "Headings stay at weight 400. Emphasis comes from size and case, never bold.", "section": "typography" },
+      { "name": "The Centre Holds Rule", "body": "Headings, short copy and calls to action are centred. Left alignment is for long reading text and lists inside columns.", "section": "layout" },
+      { "name": "The Flat Flagship Rule", "body": "Nothing floats. If an element needs separation, use a 1px rule or a section ground, never a shadow.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do set all body text and primary buttons in RL Navy (#031e3a) on white or Linen.",
+      "Do keep headings at weight 400 and let size and uppercase create hierarchy.",
+      "Do use full-bleed photography with a darkening overlay when white type sits on it.",
+      "Do centre headings, short copy and calls to action.",
+      "Do keep reading text within the 790px measure.",
+      "Do separate content with section grounds or 1px rules."
+    ],
+    "donts": [
+      "Don't round corners on buttons, images or containers.",
+      "Don't add shadows, gradients or glass effects.",
+      "Don't use Ledger Blue for anything other than inline links.",
+      "Don't bold headings or set body copy in the serif.",
+      "Don't introduce new typefaces; the three families are the system.",
+      "Don't recolour the primary button for a partner; partner colour lives in accents only (COBRAND-RULES.md)."
+    ]
+  }
+}

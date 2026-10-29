@@ -27,6 +27,10 @@
     {
       "class": "links",
       "label": "Links"
+    },
+    {
+      "class": "cobrand",
+      "label": "Cobrand"
     }
   ],
   "usage": "Home page section teasers (Our Company, Careers, Citizenship, Investor Relations); Our Company sub-page teasers; Newsroom Media Resources and Press Contact.",

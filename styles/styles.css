@@ -11,6 +11,7 @@
  */
 
 @import url('brand.css');
+@import url('cobrand.css');
 
 /* fallback fonts */
 @font-face {
@@ -343,8 +344,51 @@ main .section.black a.button.accent {
   color: var(--rl-white);
 }
 
+/*
+ * section metadata: cobrand grounds (partner tokens from cobrand.css)
+ * "cobrand" = quiet partner-tinted ground; navy text and buttons stay.
+ * "cobrand-accent" = partner accent ground; text and buttons invert to the
+ * partner contrast colour.
+ */
+main .section.cobrand,
+main .section.cobrand-accent {
+  margin: 0;
+  padding: var(--section-spacing) 0;
+}
+
+main .section.cobrand {
+  background-color: var(--cobrand-accent-soft);
+}
+
+main .section.cobrand-accent {
+  background-color: var(--cobrand-accent);
+  color: var(--cobrand-accent-contrast);
+}
+
+main .section.cobrand-accent a:any-link:not(.button) {
+  color: var(--cobrand-accent-contrast);
+  text-decoration: underline;
+}
+
+main .section.cobrand-accent a.button.primary {
+  border-color: var(--cobrand-accent-contrast);
+  background-color: var(--cobrand-accent-contrast);
+  color: var(--cobrand-accent);
+}
+
+main .section.cobrand-accent a.button.secondary,
+main .section.cobrand-accent a.button.accent {
+  border-color: var(--cobrand-accent-contrast);
+  color: var(--cobrand-accent-contrast);
+}
+
 main .section.dark a.button.accent:hover,
 main .section.black a.button.accent:hover {
   background-color: var(--rl-white);
   color: var(--rl-navy);
+}
+
+main .section.cobrand-accent a.button.accent:hover {
+  background-color: var(--cobrand-accent-contrast);
+  color: var(--cobrand-accent);
 }

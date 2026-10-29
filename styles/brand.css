@@ -8,7 +8,7 @@
   --rl-navy: #031e3a;
   --rl-white: #fff;
   --rl-black: #000;
-  --rl-blue: #007dfe;
+  --rl-blue: #0068d6; /* darkened from the corporate site's #007dfe to pass WCAG AA (5.31:1 on white) */
   --rl-off-white: #f5f5f2;
   --rl-off-white-alt: #f2f3f5;
   --rl-grey-100: #f5f5f5;
@@ -67,6 +67,33 @@
 
   /* nav height */
   --nav-height: 50px;
+
+  /*
+   * Stardust token contract aliases
+   * Stardust prototypes and deploys read this fixed vocabulary; it maps onto the
+   * Ralph Lauren tokens above so generated code inherits the brand standard.
+   * Never redefine these in a microsite; partner values belong in cobrand.css.
+   */
+  --heading-xxl: var(--display-font-size);
+  --heading-xl: var(--heading-font-size-xxl);
+  --heading-lg: var(--heading-font-size-xl);
+  --heading-md: var(--heading-font-size-l);
+  --body: var(--body-font-size-m);
+  --body-sm: var(--body-font-size-s);
+  --line-height-heading: 1.2;
+  --line-height-body: var(--body-line-height);
+  --color-bg: var(--background-color);
+  --color-fg: var(--text-color);
+  --color-accent: var(--rl-navy);
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 48px;
+  --spacing-2xl: 75px;
+  --section-padding: var(--section-spacing);
+  --max-width: var(--content-max-width);
+  --radius: 0;
 }
 
 @media (width >= 900px) {

@@ -27,7 +27,7 @@ async function fetchFooterFragment() {
 function resolveImages(root, base) {
   root.querySelectorAll('img[src]').forEach((img) => {
     const src = img.getAttribute('src');
-    if (!/^(https?:)?\/\//.test(src) && !src.startsWith('/')) {
+    if (!/^(https?:|data:|\/)/.test(src)) {
       img.setAttribute('src', new URL(src, base).pathname);
     }
     img.setAttribute('loading', 'lazy');
@@ -118,11 +118,31 @@ function decorateConsentTriggers(root) {
 }
 
 /**
+ * Returns true for the optional cobrand partner section: a text-only label
+ * paragraph ("In partnership with") followed by the partner logo.
+ * @param {Element} section top-level fragment section
+ */
+function isPartnerSection(section) {
+  const [label, ...rest] = section.querySelectorAll(':scope > p');
+  return !!label
+    && !label.querySelector('a, img, picture')
+    && label.textContent.trim().length > 0
+    && rest.some((p) => p.querySelector('img'));
+}
+
+/**
  * Classifies a fragment section and decorates its rows.
  * @param {Element} section top-level fragment section
- * @returns {'brand'|'links'|'copyright'} section role
+ * @returns {'brand'|'partner'|'links'|'copyright'} section role
  */
 function decorateSection(section) {
+  if (isPartnerSection(section)) {
+    section.className = 'footer-partner';
+    const [label, ...logos] = section.querySelectorAll(':scope > p');
+    label.className = 'footer-partner-label';
+    logos.forEach((p) => { p.className = 'footer-partner-logo'; });
+    return 'partner';
+  }
   const lists = section.querySelectorAll(':scope > ul');
   if (lists.length) {
     section.className = 'footer-links';
