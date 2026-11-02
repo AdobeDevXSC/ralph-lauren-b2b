@@ -106,14 +106,18 @@ blockquote {
 
 code,
 pre {
+  font-family: var(--mono-font-family);
   font-size: var(--body-font-size-s);
 }
 
+/* code blocks hold copyable prompts and snippets: keep line breaks, wrap long lines */
 pre {
-  padding: 16px;
+  padding: 16px 20px;
   background-color: var(--light-color);
   overflow-x: auto;
-  white-space: pre;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  text-align: start;
 }
 
 input,
